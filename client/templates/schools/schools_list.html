@@ -1,0 +1,27 @@
+<template name="schoolsList">
+    {{#each schools}}
+        {{> schoolTemplate}}
+    {{else}}
+        <div class="row">
+            <div class="col-xs-12">
+                Be the first to share your school's water fountains!
+            </div>
+        </div>
+    {{/each}}
+</template>
+
+<template name="schoolTemplate">
+    <div class="shard">
+        <div class="row">
+            <div class="col-xs-12">
+                <b>{{name}}</b>
+            </div>
+            <div class="col-xs-12 col-sm-5">
+                Total # students: {{population}}
+            </div>
+            <div class="col-xs-12 col-sm-7">
+                Avg fountain rating: {{fmtRating}} ({{fmtNumRatings}})
+            </div>
+        </div>
+    </div>
+</template>
