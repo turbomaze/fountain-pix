@@ -1,0 +1,16 @@
+<template name="fountainPage">
+    <div class="shard">
+        <div class="row">
+            <div class="col-12-xs">
+                {{#if imageObj.isUploaded}}
+                    <div class="fountain-img-cont">
+                        <img class="fountain-img"
+                             src="{{imageObj.url}}">
+                    </div>
+                {{else}}
+                    Uploading...
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>
