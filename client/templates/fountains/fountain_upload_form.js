@@ -5,13 +5,15 @@ Template.fountainUploadForm.events({
         var file = document.getElementsByClassName(
             'fountain-img-input'
         )[0].files[0];
-        FountainPictures.insert(file, function (err, fileObj) {
-            if (err) return Errors.throw(err.reason);
+        if (!!file) {
+            FountainPictures.insert(file, function (err, fileObj) {
+                if (err) return Errors.throw(err.reason);
 
-            var fountainId = Fountains.insert({
-                imageRef: fileObj._id
+                var fountainId = Fountains.insert({
+                    imageRef: fileObj._id
+                });
+                Router.go('fountainPage', {_id: fountainId});
             });
-            Router.go('fountainPage', {_id: fountainId});
-        });
+        }
     }
 });

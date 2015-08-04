@@ -24,4 +24,19 @@ body {
 .fountain-img {
     max-width: 70%;
     max-height: 400px;
+    margin-bottom: 1em;
 }
+
+.school-list {width: 100%;}
+#other-school-name {width: 100%;}
+#other-school-addr {width: 100%;}
+#other-school-pop {width: 100%;}
+#set-school-btn {width: 100%;}
+#rate-btn {width: 100%;}
+
+.school-left {float: left;}
+.school-right {float: right;}
+.drink-left {float: left;}
+.drink-right {float: right;}
+.clean-left {float: left;}
+.clean-right {float: right;}
