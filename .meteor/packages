@@ -14,3 +14,4 @@ accounts-password
 cfs:standard-packages
 cfs:gridfs
 audit-argument-checks
+reywood:iron-router-ga
