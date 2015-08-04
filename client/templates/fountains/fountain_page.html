@@ -22,26 +22,45 @@
                         {{schoolName}}
                     </span>
                 </div>
-                <div class="col-xs-12">
-                    <span class="drink-left">
-                        <b>Would you drink from this?</b>
-                    </span>
-                    <span class="drink-right">
-                        <input type="radio" id="drink-yes"> Yes
-                        <input type="radio" id="drink-no"> No
-                    </span>
-                </div>
-                <div class="col-xs-12">
-                    <span class="clean-left">
-                        <b>Cleanliness rating:</b>
-                    </span>
-                    <span class="clean-right">Average</span>
-                    <input type="range" id="cleanliness-rating"
-                           min="0" max="50">
-                </div>
-                <div class="col-xs-12">
-                    <input type="submit" id="rate-btn" value="Rate">
-                </div>
+                {{#if alreadyRated}}
+                    <div class="col-xs-12">
+                        <span class="drink-left">
+                            <b>% who would drink:</b>
+                        </span>
+                        <span class="drink-right">
+                            {{drinkPercent}}
+                        </span>
+                    </div>
+                    <div class="col-xs-12">
+                        <span class="clean-left">
+                            <b>Cleanliness rating:</b>
+                        </span>
+                        <span class="clean-right">
+                            {{fmtRating}}
+                        </span>
+                    </div>
+                {{else}}
+                    <div class="col-xs-12">
+                        <span class="drink-left">
+                            <b>Would you drink from this?</b>
+                        </span>
+                        <span class="drink-right">
+                            <input type="radio" id="drink-yes"> Yes
+                            <input type="radio" id="drink-no"> No
+                        </span>
+                    </div>
+                    <div class="col-xs-12">
+                        <span class="clean-left">
+                            <b>Cleanliness rating:</b>
+                        </span>
+                        <span class="clean-right" id="clean-adj">Average</span>
+                        <input type="range" id="cleanliness-rating"
+                               min="0" max="100">
+                    </div>
+                    <div class="col-xs-12">
+                        <input type="submit" id="rate-btn" value="Rate">
+                    </div>
+                {{/if}}
             {{else}}
                 <div class="col-xs-12">
                     <select class="school-list" id="school-list">
