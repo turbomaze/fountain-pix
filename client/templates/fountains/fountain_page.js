@@ -1,13 +1,14 @@
 Template.fountainPage.helpers({
     imageObj: function() {
+        if (!this.fountainObj) return {};
         return FountainPictures.findOne(this.fountainObj.imageRef);
     },
 
     schoolName: function() {
-        if (!this.schoolId) {
+        if (!this.school._id) {
             return false;
         } else {
-            var school = Schools.findOne(this.schoolId, {
+            var school = Schools.findOne(this.school._id, {
                 fields: {
                     name: 1
                 }
@@ -17,7 +18,7 @@ Template.fountainPage.helpers({
     },
 
     schoolList: function() {
-        if (!this.schoolId) {
+        if (!this.school._id) {
             return Schools.find({}, {
                 fields: {
                     _id: 1,

@@ -1,0 +1,23 @@
+<template name="fountain">
+    <div class="shard">
+        <div class="row">
+            <div class="col-xs-12">
+                {{#if isUploaded}}
+                    <div class="fountain-img-cont">
+                        <a href="{{pathFor 'fountainPage'
+                                   data=fountainData}}">
+                            <img class="fountain-img"
+                                 src="{{url}}">
+                        </a>
+                    </div>
+                {{else}}
+                    Uploading...
+                {{/if}}
+            </div>
+            <div class="col-xs-12">
+                Rated {{fountainData.ratings.length}} {{fountainData.ratingsWord}}.
+                Click the image to rate this fountain!
+            </div>
+        </div>
+    </div>
+</template>

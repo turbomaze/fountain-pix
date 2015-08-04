@@ -19,7 +19,9 @@
                         <b>School:</b>
                     </span>
                     <span class="school-right">
-                        {{schoolName}}
+                        <a href="{{pathFor 'schoolPage' data=school}}">
+                            &larr; {{schoolName}}
+                        </a>
                     </span>
                 </div>
                 {{#if alreadyRated}}

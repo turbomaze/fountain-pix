@@ -2,7 +2,11 @@
     <div class="shard">
         <div class="row">
             <div class="col-xs-12">
-                <h4>{{name}}</h4>
+                <h4>
+                    <a href="{{pathFor 'schoolPage'}}">
+                        {{name}} &rarr;
+                    </a>
+                </h4>
             </div>
             <div class="col-xs-12 col-sm-5">
                 Total # students: {{population}}
