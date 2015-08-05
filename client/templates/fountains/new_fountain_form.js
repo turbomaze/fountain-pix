@@ -24,7 +24,10 @@ Template.newFountainForm.events({
                                 'Invalid fountain picture id.'
                             );
                         } else if (result.success) {
-                            Router.go('fountainPage', {_id: result.success});
+                            Router.go('fountainPage', {
+                                _id: result.success,
+                                _idx: 0
+                            });
                         }
                     }
                 );

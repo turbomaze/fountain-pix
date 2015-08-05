@@ -1,67 +1,69 @@
 <template name="fountainPicture">
-    <div class="shard">
-        <div class="row">
-            <div class="col-12-xs">
-                {{#if imageObj.isUploaded}}
-                    <div class="fountain-img-cont">
-                        <img class="fountain-img"
-                             src="{{imageObj.url}}">
+    <div class="{{showClass}}" id="fountain-pic-{{_idx}}">
+        <div class="shard fountain-picture">
+            <div class="row fountain-image-row">
+                <div class="col-12-xs">
+                    {{#if imageObj.isUploaded}}
+                        <div class="fountain-img-cont">
+                            <img class="fountain-img"
+                                 src="{{imageObj.url}}">
+                        </div>
+                    {{else}}
+                        Uploading...
+                    {{/if}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                        <span class="school-left">
+                            <b>School:</b>
+                        </span>
+                        <span class="school-right">
+                            <a href="{{pathFor 'schoolPage' data=school}}">
+                                &larr; {{schoolName}}
+                            </a>
+                        </span>
+                </div>
+                {{#if alreadyRated}}
+                    <div class="col-xs-12">
+                            <span class="drink-left">
+                                <b>% who would drink:</b>
+                            </span>
+                            <span class="drink-right">
+                                {{drinkPercent}}
+                            </span>
+                    </div>
+                    <div class="col-xs-12">
+                            <span class="clean-left">
+                                <b>Cleanliness rating:</b>
+                            </span>
+                            <span class="clean-right">
+                                {{fmtRating}}
+                            </span>
                     </div>
                 {{else}}
-                    Uploading...
+                    <div class="col-xs-12">
+                            <span class="drink-left">
+                                <b>Would you drink from this?</b>
+                            </span>
+                            <span class="drink-right">
+                                <input type="radio" class="drink-yes"> Yes
+                                <input type="radio" class="drink-no"> No
+                            </span>
+                    </div>
+                    <div class="col-xs-12">
+                            <span class="clean-left">
+                                <b>Cleanliness rating:</b>
+                            </span>
+                        <span class="clean-right clean-adj">Average</span>
+                        <input type="range" class="cleanliness-rating"
+                               min="0" max="100">
+                    </div>
+                    <div class="col-xs-12">
+                        <input type="submit" class="rate-btn" value="Rate">
+                    </div>
                 {{/if}}
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                    <span class="school-left">
-                        <b>School:</b>
-                    </span>
-                    <span class="school-right">
-                        <a href="{{pathFor 'schoolPage' data=school}}">
-                            &larr; {{schoolName}}
-                        </a>
-                    </span>
-            </div>
-            {{#if alreadyRated}}
-                <div class="col-xs-12">
-                        <span class="drink-left">
-                            <b>% who would drink:</b>
-                        </span>
-                        <span class="drink-right">
-                            {{drinkPercent}}
-                        </span>
-                </div>
-                <div class="col-xs-12">
-                        <span class="clean-left">
-                            <b>Cleanliness rating:</b>
-                        </span>
-                        <span class="clean-right">
-                            {{fmtRating}}
-                        </span>
-                </div>
-            {{else}}
-                <div class="col-xs-12">
-                        <span class="drink-left">
-                            <b>Would you drink from this?</b>
-                        </span>
-                        <span class="drink-right">
-                            <input type="radio" class="drink-yes"> Yes
-                            <input type="radio" class="drink-no"> No
-                        </span>
-                </div>
-                <div class="col-xs-12">
-                        <span class="clean-left">
-                            <b>Cleanliness rating:</b>
-                        </span>
-                    <span class="clean-right clean-adj">Average</span>
-                    <input type="range" class="cleanliness-rating"
-                           min="0" max="100">
-                </div>
-                <div class="col-xs-12">
-                    <input type="submit" class="rate-btn" value="Rate">
-                </div>
-            {{/if}}
         </div>
     </div>
 </template>

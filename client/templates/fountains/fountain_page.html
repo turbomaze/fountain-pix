@@ -1,7 +1,9 @@
 <template name="fountainPage">
-    {{#each images}}
-        {{> fountainPicture}}
-    {{/each}}
+    <div class="images-cont">
+        {{#each images}}
+            {{> fountainPicture}}
+        {{/each}}
+    </div>
 
     {{> newPictureForm}}
 </template>

@@ -24,7 +24,7 @@ Template.newPictureForm.events({
                                 'Invalid fountain picture id.'
                             );
                         } else if (result.success) {
-                            //nothing, great!
+                            window.location.href = '/fountain/'+fountainId+'/'+result.success;
                         }
                     }
                 );
