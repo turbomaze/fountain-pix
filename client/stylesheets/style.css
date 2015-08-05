@@ -73,11 +73,19 @@ a#bottom {
     margin-bottom: 1em;
 }
 
+.fountain-date {
+    text-align: center;
+}
+
+h3.back-to-school {
+    margin-top: 0;
+}
+
 #other-school-name {width: 100%;}
 #other-school-addr {width: 100%;}
 #other-school-pop {width: 100%;}
 #add-school-btn {width: 100%;}
-#add-fountain-btn {width: 100%;}
+.add-fountain-btn {width: 100%;}
 .add-picture-btn {width: 100%;}
 .rate-btn {width: 100%;}
 

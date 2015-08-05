@@ -47,3 +47,9 @@ Template.fountainPage.events({
         else onSwipeRight(tmpl.data.maxIdx);
     }
 });
+
+Template.fountainPage.helpers({
+    school: function() {
+        return {_id: this.schoolId};
+    }
+});

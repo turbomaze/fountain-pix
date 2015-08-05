@@ -1,6 +1,15 @@
 Template.fountainPicture.helpers({
-    school: function() {
-        return {_id: this.schoolId};
+    swipeLeft: function() {
+        return Template.parentData(1).images.length > 1 ? '&larr;' : '';
+    },
+
+    swipeRight: function() {
+        return Template.parentData(1).images.length > 1 ? '&rarr;' : '';
+    },
+
+    fmtDate: function() {
+        var preFmt = this.createdAt.toDateString().split(' ');
+        return preFmt[1]+' '+parseInt(preFmt[2])+', '+preFmt[3];
     },
 
     alreadyRated: function() {

@@ -1,4 +1,11 @@
 <template name="fountainPage">
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="{{pathFor 'schoolPage' data=school}}">
+                <h3 class="back-to-school">&larr; {{schoolName}}</h3>
+            </a>
+        </div>
+    </div>
     <div class="images-cont">
         {{#each images}}
             {{> fountainPicture}}

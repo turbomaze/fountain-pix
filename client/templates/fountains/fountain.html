@@ -2,6 +2,11 @@
     <div class="shard">
         <div class="row">
             <div class="col-xs-12">
+                <h3 class="fountain-date">
+                    Fountain {{addOne _idx}} at {{fmtDate}}
+                </h3>
+            </div>
+            <div class="col-xs-12">
                 {{#if imageObj.isUploaded}}
                     <div class="fountain-img-cont">
                         <a href="{{pathFor 'fountainPage' data=fpData}}">
@@ -14,7 +19,15 @@
                 {{/if}}
             </div>
             <div class="col-xs-12">
-                Click to add a picture or rate the fountain!
+                <span class="clean-left">
+                    <b>Cleanliness rating:</b>
+                </span>
+                <span class="clean-right">
+                    {{fmtRating}}
+                </span>
+            </div>
+            <div class="col-xs-12">
+                Click to rate this fountain or add your own picture!
             </div>
         </div>
     </div>
