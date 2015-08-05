@@ -14,6 +14,6 @@ Meteor.publish('fountain', function(fountainId) {
     check(fountainId, String);
     return [
         Fountains.find(fountainId),
-        FountainPictures.find({fountainId: fountainId})
+        FountainPictures.find({}) //only way to get it to work unfortunately
     ];
 });
