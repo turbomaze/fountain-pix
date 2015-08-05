@@ -14,6 +14,13 @@ Meteor.publish('fountain', function(fountainId) {
     check(fountainId, String);
     return [
         Fountains.find(fountainId),
-        FountainPictures.find({}) //only way to get it to work unfortunately
+        FountainPictures.find({fountainId: fountainId}) //only way to get it to work unfortunately
+    ];
+});
+
+Meteor.publish('fountainPicture', function(fountainPicId) {
+    check(fountainPicId, String);
+    return [
+        FountainPictures.find(fountainPicId) //only way to get it to work unfortunately
     ];
 });

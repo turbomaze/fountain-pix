@@ -12,6 +12,7 @@ Template.newPictureForm.events({
                 if (err) return Errors.throw(err.reason);
                 //when the image is uploaded
                 var fountainPicId = fileObj._id;
+                Meteor.subscribe('fountainPicture', fountainPicId);
                 var cursor = FountainPictures.find(fountainPicId);
                 var liveQuery = cursor.observe({
                     changed: function(newImage, oldImage) {

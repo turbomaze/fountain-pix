@@ -14,5 +14,16 @@ Template.fountain.helpers({
             fmtNumRatings += 's';
         }
         return fmtRating + ' ('+fmtNumRatings+')';
+    },
+
+    drinkPercent: function() {
+        if (!this) return '0%';
+
+        var wouldDrink = this.numDrinkable;
+        var wouldntDrink = this.numNotDrinkable;
+        var denom = wouldDrink+wouldntDrink;
+        if (denom === 0) return '0%';
+        var pct = wouldDrink/denom;
+        return (Math.floor(1000*pct)/10)+'%';
     }
 });
