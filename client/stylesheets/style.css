@@ -1,3 +1,41 @@
+/* errors styling */
+@-webkit-keyframes fadeOut {
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes fadeOut {
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.errors{
+    position: fixed;
+    z-index: 10000;
+    padding: 10px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    pointer-events: none;
+}
+
+.alert {
+    animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -moz-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    width: 250px;
+    float: right;
+    clear: both;
+    margin-bottom: 5px;
+    pointer-events: auto;
+}
+
+/* general styling */
 body {
     background: #e9faff;
     color: #555555;
@@ -13,8 +51,13 @@ body {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
 
-#fountain-img-input {
-    display: inline-block;
+a#bottom {
+    cursor: pointer;
+}
+
+.fountain-img-input {
+    display: block;
+    margin-bottom: 2px;
 }
 
 .fountain-img-cont {
@@ -27,12 +70,13 @@ body {
     margin-bottom: 1em;
 }
 
-.school-list {width: 100%;}
 #other-school-name {width: 100%;}
 #other-school-addr {width: 100%;}
 #other-school-pop {width: 100%;}
-#set-school-btn {width: 100%;}
-#rate-btn {width: 100%;}
+#add-school-btn {width: 100%;}
+#add-fountain-btn {width: 100%;}
+.add-picture-btn {width: 100%;}
+.rate-btn {width: 100%;}
 
 .school-left {float: left;}
 .school-right {float: right;}

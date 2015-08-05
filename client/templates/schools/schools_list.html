@@ -1,13 +1,26 @@
 <template name="schoolsList">
-    {{> fountainUploadForm}}
+    {{#if schools}}
+        <div class="shard">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a id="bottom">Use the form below to add schools.</a>
+                </div>
+            </div>
+        </div>
 
-    {{#each schools}}
-        {{> schoolTemplate}}
+        {{#each schools}}
+            {{> schoolTemplate}}
+        {{/each}}
+
+        {{> newSchoolForm}}
     {{else}}
         <div class="row">
             <div class="col-xs-12">
-                Be the first to share your school's water fountains!
+                Be the first to share your school's water fountains! Add your school.
             </div>
         </div>
-    {{/each}}
+        <br>
+
+        {{> newSchoolForm}}
+    {{/if}}
 </template>
