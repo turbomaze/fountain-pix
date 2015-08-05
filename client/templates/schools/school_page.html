@@ -2,23 +2,33 @@
     <div class="shard">
         <div class="row">
             <div class="col-xs-12">
-                <h3>{{school.name}}</h3>
+                <h3>{{name}}</h3>
             </div>
             <div class="col-xs-12 col-sm-4">
-                <b>Total # students:</b> {{school.population}}
+                <b>Total # students:</b> {{population}}
             </div>
             <div class="col-xs-12 col-sm-4">
                 <b>Avg fountain rating:</b>
                 <br class="hidden-xs">
-                {{school.fmtRating}} ({{school.fmtNumRatings}})
+                {{fmtRating}} ({{fmtNumRatings}})
             </div>
             <div class="col-xs-12 col-sm-4">
                 <b># fountain pictures:</b>
-                {{school.numFountains}}
+                {{numFountains}}
             </div>
         </div>
     </div>
-    {{#each fountainPics}}
+
+    {{#each fountainObjs}}
         {{> fountain}}
+    {{else}}
+        <div class="row">
+            <div class="col-xs-12">
+                Be the first to add a water fountain photo!
+            </div>
+        </div>
+        <br>
     {{/each}}
+
+    {{> newFountainForm}}
 </template>

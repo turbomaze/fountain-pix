@@ -1,6 +1,9 @@
 Meteor.publish('school', function(schoolId) {
     check(schoolId, String);
-    return Schools.find({_id: schoolId});
+    return [
+        Schools.find(schoolId),
+        FountainPictures.find({schoolId: schoolId})
+    ];
 });
 
 Meteor.publish('schools', function() {
@@ -9,13 +12,8 @@ Meteor.publish('schools', function() {
 
 Meteor.publish('fountain', function(fountainId) {
     check(fountainId, String);
-    return Fountains.find({_id: fountainId});
-});
-
-Meteor.publish('fountains', function() {
-    return Fountains.find({});
-});
-
-Meteor.publish('fountainPictures', function() {
-    return FountainPictures.find({});
+    return [
+        Fountains.find(fountainId),
+        FountainPictures.find({fountainId: fountainId})
+    ];
 });

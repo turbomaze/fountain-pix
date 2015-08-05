@@ -1,0 +1,25 @@
+<template name="newSchoolForm">
+    <div class="shard" id="new-school-form">
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="text" id="other-school-name"
+                       maxlength="50"
+                       placeholder="New school name">
+            </div>
+            <div class="col-xs-12">
+                <input type="number" id="other-school-pop"
+                       placeholder="Approx. population"
+                       min="5" max="40000">
+            </div>
+            <div class="col-xs-12">
+                <input type="address" id="other-school-addr"
+                       maxlength="80"
+                       placeholder="Address">
+            </div>
+            <div class="col-xs-12">
+                <input type="submit" id="add-school-btn"
+                       value="Add school">
+            </div>
+        </div>
+    </div>
+</template>
