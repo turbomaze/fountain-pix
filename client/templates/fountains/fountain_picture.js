@@ -168,7 +168,7 @@ Template.fountainPicture.events({
                             );
                         } else if (result.badSecret) {
                             return Errors.throw(
-                                'You don\'t have permission to delete' +
+                                'You don\'t have permission to delete ' +
                                 'this picture.'
                             );
                         } else if (result.success) {

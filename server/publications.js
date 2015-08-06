@@ -1,7 +1,9 @@
 Meteor.publish('school', function(schoolId) {
     check(schoolId, String);
     return [
-        Schools.find(schoolId),
+        Schools.find(schoolId, {
+            fields: {secret: 0}
+        }),
         FountainPictures.find({schoolId: schoolId}, {
             fields: {secret: 0}
         })
@@ -9,7 +11,9 @@ Meteor.publish('school', function(schoolId) {
 });
 
 Meteor.publish('schools', function() {
-    return Schools.find({});
+    return Schools.find({}, {
+        fields: {secret: 0}
+    });
 });
 
 Meteor.publish('fountain', function(fountainId) {
@@ -26,7 +30,7 @@ Meteor.publish('fountainPicture', function(fountainPicId) {
     check(fountainPicId, String);
     return [
         FountainPictures.find(fountainPicId, {
-            fields: {secret: false}
-        }) //only way to get it to work unfortunately
+            fields: {secret: 0}
+        })
     ];
 });

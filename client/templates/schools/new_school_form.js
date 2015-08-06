@@ -24,7 +24,20 @@ Template.newSchoolForm.events({
                 );
             } else if (result.schoolAlreadyAdded) {
                 Router.go('schoolPage', {_id: result.schoolAlreadyAdded});
-            }else if (result.success) {
+            } else if (result.success) {
+                //add the secret
+                var secrets = localStorage.getItem(
+                    'secrets'
+                );
+                if (secrets) {
+                    secrets = JSON.parse(secrets);
+                } else secrets = {};
+                secrets[result.success] = result.secret;
+                localStorage.setItem(
+                    'secrets', JSON.stringify(secrets)
+                );
+
+                //go to the school page now
                 Router.go('schoolPage', {_id: result.success});
             }
         });

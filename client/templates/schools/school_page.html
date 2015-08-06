@@ -35,5 +35,16 @@
         <br>
     {{/each}}
 
+    {{#if canDelete}}
+        <div class="shard">
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="button" class="delete-btn"
+                           value="Delete school">
+                </div>
+            </div>
+        </div>
+    {{/if}}
+
     {{> newFountainForm}}
 </template>
