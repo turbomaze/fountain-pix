@@ -1,21 +1,16 @@
 Template.schoolPage.helpers({
-    fountainPics: function() {
-        return this.fountains.map(function(fountain) {
-            if (!fountain.imageRef) return {};
-            var fountainPic = FountainPictures.findOne(
-                fountain.imageRef
-            );
+    fmtRating: function() {
+        if (!this) return '0/5, (0 ratings)';
 
-            if (!fountain.ratings) {
-                return {};
-            } else if (fountain.ratings.length !== 1) {
-                fountain.ratingsWord = 'times';
-            } else {
-                fountain.ratingsWord = 'time';
-            }
+        var fmtRating = (Math.round(100*this.rating)/20);
+        fmtRating = (Math.round(10*fmtRating)/10)+'';
+        if (fmtRating.length === 1) fmtRating += '.0';
+        fmtRating += '/5';
+        var s = this.numRatings === 1 ? '' : 's';
+        return fmtRating+' ('+this.numRatings+' rating'+s+')';
+    },
 
-            fountainPic.fountainData = fountain;
-            return fountainPic;
-        });
+    numFountains: function() {
+        return Object.keys(this.fountains).length;
     }
 });

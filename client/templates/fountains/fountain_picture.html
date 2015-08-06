@@ -3,9 +3,9 @@
         <div class="shard fountain-picture">
             <div class="row fountain-image-row">
                 <div class="col-xs-12">
-                    <h3 class="fountain-date">
+                    <h4 class="fountain-date">
                         {{{swipeLeft}}} {{fmtDate}} {{{swipeRight}}}
-                    </h3>
+                    </h4>
                 </div>
                 <div class="col-xs-12">
                     {{#if imageObj.isUploaded}}
@@ -60,5 +60,16 @@
                 {{/if}}
             </div>
         </div>
+
+        {{#if canDelete}}
+            <div class="shard">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <input type="button" class="delete-btn"
+                               value="Delete picture">
+                    </div>
+                </div>
+            </div>
+        {{/if}}
     </div>
 </template>
