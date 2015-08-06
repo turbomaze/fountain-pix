@@ -24,6 +24,17 @@ Template.newFountainForm.events({
                                 'Invalid fountain picture id.'
                             );
                         } else if (result.success) {
+                            //add the secret
+                            var secrets = localStorage.getItem('secrets');
+                            if (secrets) {
+                                secrets = JSON.parse(secrets);
+                            } else secrets = {};
+                            secrets[fountainPicId] = result.secret;
+                            localStorage.setItem(
+                                'secrets', JSON.stringify(secrets)
+                            );
+
+                            //go to the new page
                             Router.go('fountainPage', {
                                 _id: result.success,
                                 _idx: 0

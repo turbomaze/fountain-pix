@@ -1,10 +1,32 @@
+Template.fountainPicture.onCreated(function() {
+    var fountainPicId = this.data._id;
+    Session.set('can-delete-'+fountainPicId, false);
+});
+
+Template.fountainPicture.onRendered(function() {
+    var fountainPicId = this.data._id;
+    var secrets = localStorage.getItem('secrets');
+    secrets = secrets ? JSON.parse(secrets) : {};
+    var secret = secrets[fountainPicId];
+    Meteor.call('isPictureCreator', fountainPicId, secret,
+        function(err, result) {
+            if (err) return Errors.throw(err.reason);
+            Session.set('can-delete-'+fountainPicId, result);
+        }
+    );
+});
+
 Template.fountainPicture.helpers({
     swipeLeft: function() {
-        return Template.parentData(1).images.length > 1 ? '&larr;' : '';
+        var imgs = Template.parentData(1).images;
+        imgs = imgs || [];
+        return imgs.length > 1 ? '&larr;' : '';
     },
 
     swipeRight: function() {
-        return Template.parentData(1).images.length > 1 ? '&rarr;' : '';
+        var imgs = Template.parentData(1).images;
+        imgs = imgs || [];
+        return imgs.length > 1 ? '&rarr;' : '';
     },
 
     fmtDate: function() {
@@ -46,6 +68,11 @@ Template.fountainPicture.helpers({
         fmtRating += '/5';
         var s = this.numRatings === 1 ? '' : 's';
         return fmtRating+' ('+this.numRatings+' rating'+s+')';
+    },
+
+    canDelete: function() {
+        var fountainPicId = this._id;
+        return !!Session.get('can-delete-'+fountainPicId);
     }
 });
 
@@ -95,7 +122,7 @@ Template.fountainPicture.events({
                     return Errors.throw(
                         'The fountain id you provided is invalid.'
                     );
-                } else if (result.badFountainPictureIdId) {
+                } else if (result.badFountainPictureId) {
                     return Errors.throw(
                         'The picture id you provided is invalid.'
                     );
@@ -119,5 +146,49 @@ Template.fountainPicture.events({
                 }
             }
         );
+    },
+
+    'click .delete-btn': function(e, tmpl) {
+        e.preventDefault();
+
+        if (confirm('Are you sure you want to delete this picture?')) {
+            var fountainId = this.fountainId;
+            var fountainPicId = this._id;
+            var secrets = localStorage.getItem('secrets');
+            secrets = secrets ? JSON.parse(secrets) : {};
+            var secret = secrets[fountainPicId];
+            if (secret) {
+                Meteor.call('deletePicture', fountainPicId, secret,
+                    function(err, result) {
+                        if (err) return Errors.throw(err.reason);
+
+                        if (result.badFountainPictureId) {
+                            return Errors.throw(
+                                'The picture id you provided is invalid.'
+                            );
+                        } else if (result.badSecret) {
+                            return Errors.throw(
+                                'You don\'t have permission to delete ' +
+                                'this picture.'
+                            );
+                        } else if (result.success) {
+                            if (result.deletedFountain) {
+                                Router.go('schoolPage', {
+                                    _id: result.deletedFountain
+                                });
+                            } else {
+                                var newUrl = '/fountain/'+fountainId;
+                                newUrl += '/'+result.idxOfPrev;
+                                window.location.href = newUrl;
+                            }
+                        }
+                    }
+                );
+            } else {
+                return Errors.throw(
+                    'You don\'t have permission to delete this picture.'
+                );
+            }
+        }
     }
 });

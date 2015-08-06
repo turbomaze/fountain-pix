@@ -7,27 +7,54 @@ Template.newPictureForm.events({
         )[0].files[0];
         if (!!file) {
             var fountainId = tmpl.data._id;
+            file.fountainId = fountainId;
             FountainPictures.insert(file, function(err, fileObj) {
                 if (err) return Errors.throw(err.reason);
-
+                //when the image is uploaded
                 var fountainPicId = fileObj._id;
-                Meteor.call('addPicture', fountainId, fountainPicId,
-                    function(err, result) {
-                        if (err) return Errors.throw(err.reason);
+                Meteor.subscribe('fountainPicture', fountainPicId);
+                var cursor = FountainPictures.find(fountainPicId);
+                var liveQuery = cursor.observe({changed: function(newImage) {
+                    if (newImage.isUploaded()) {
+                        liveQuery.stop();
 
-                        if (result.badFountainId) {
-                            return Errors.throw(
-                                'You can only add pictures to valid fountains.'
-                            );
-                        } else if (result.badFountainPicId) {
-                            return Errors.throw(
-                                'Invalid fountain picture id.'
-                            );
-                        } else if (result.success) {
-                            window.location.href = '/fountain/'+fountainId+'/'+result.success;
-                        }
+                        //finally finished uploading
+                        Meteor.call('addPicture',
+                            fountainId, fountainPicId,
+                            function(err, result) {
+                                if (err) return Errors.throw(err.reason);
+
+                                if (result.badFountainId) {
+                                    return Errors.throw(
+                                        'You can only add pictures to ' +
+                                        'valid fountains.'
+                                    );
+                                } else if (result.badFountainPicId) {
+                                    return Errors.throw(
+                                        'Invalid fountain picture id.'
+                                    );
+                                } else if (result.success) {
+                                    //add the secret
+                                    var secrets = localStorage.getItem(
+                                        'secrets'
+                                    );
+                                    if (secrets) {
+                                        secrets = JSON.parse(secrets);
+                                    } else secrets = {};
+                                    secrets[fountainPicId] = result.secret;
+                                    localStorage.setItem(
+                                        'secrets', JSON.stringify(secrets)
+                                    );
+
+                                    //go to the new url
+                                    var newUrl = '/fountain/'+fountainId;
+                                    newUrl += '/'+result.success;
+                                    window.location.href = newUrl;
+                                }
+                            }
+                        );
                     }
-                );
+                }});
             });
         }
     }

@@ -2,6 +2,7 @@
   "public": {
     "ga": {
       "id": "UA-47072440-11"
-    }
+    },
+    "masterSecret": "12a97cd65435fa2923f4b2aa0ad69b23"
   }
 }
