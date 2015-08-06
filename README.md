@@ -47,14 +47,14 @@ of how clean or dirty a given fountain appears. It's inherently subjective.
 
 FountainPix let's anyone rate how clean (0-5 scale) they think a given
 fountain looks as well as share whether or not they would drink from it.
-The form for doing this is at the bottom of fountain page, whose link
+The form for doing this is at the bottom of the fountain page, whose link
 is easily shareable on social media. Schools receive an overall rating
 based on the ratings of its individual water fountains.
 
 ### Deleting pictures and schools
-Only the person who uploaded a picture can delete. When all of the
+Only the person who uploaded a picture can delete it. When all of the
 pictures associated with a water fountain are deleted, that fountain
-is automatically deleted.
+is automatically removed.
 
 Schools can only be deleted if they don't have any water fountains
 associated with them on the site. Again, only the person who originally
@@ -65,6 +65,6 @@ accountability project, contact me and I'll explain the admin feature
 that let's authorized users delete any picture or school.
 
 ## License
-MIT License: http://rem.mit-license.org/
+MIT License: http://igliu.mit-license.org/
 
 Made by Anthony Liu for the Youth Leadership Institute, San Mateo.
