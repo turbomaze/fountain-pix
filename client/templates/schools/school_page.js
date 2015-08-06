@@ -4,7 +4,7 @@ Template.schoolPage.onCreated(function() {
 });
 
 Template.schoolPage.onRendered(function() {
-    var schoolId = this.data._id;
+    var schoolId = this.data._id || 'badId';
     var secrets = localStorage.getItem('secrets');
     secrets = secrets ? JSON.parse(secrets) : {};
     var secret = secrets[schoolId];
